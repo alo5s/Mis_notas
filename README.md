@@ -1,63 +1,65 @@
-Mis Notas
+# Mis Notas
+
 Mis Notas es una aplicación de terminal que permite gestionar notas organizadas en archivos .md. La aplicación permite explorar directorios, visualizar archivos y navegar por su contenido de manera interactiva.
 
-Requisitos
-Para ejecutar esta aplicación, necesitas tener Python 3.x y la librería rich instalada.
+## Estructura de Archivos `.md`
 
-Instalación de Dependencias
-Puedes instalar las dependencias necesarias desde el archivo requirements.txt usando pip:
+El programa lee archivos `.md` y los estructura de una forma legible para leer en la terminal. Las reglas a la hora de escribir las notas son las siguientes:
 
-bash
-Copiar
-Editar
-pip install -r requirements.txt
-Estructura del Proyecto
-bash
-Copiar
-Editar
-mis_notas/
-│
-├── app.py             # Código principal de la aplicación
-├── requirements.txt   # Lista de dependencias de Python
-└── notas/             # Directorio que contiene las notas en formato .md
-    ├── nota1.md
-    ├── nota2.md
-    └── ...
-Cómo Ejecutar la Aplicación
-Clona el repositorio en tu máquina local:
+1. **Descripción inicial**: El primer texto debe ser la descripción de la nota.
+2. **Título**: El texto en la tercera línea o párrafo debe ser el título.
+3. **Paginación**: El texto se divide en páginas. La página se define de la siguiente manera: 
 
-bash
-Copiar
-Editar
-git clone https://github.com/usuario/mis_notas.git
-cd mis_notas
-Instala las dependencias:
+    Un texto ejemplo
 
-bash
-Copiar
-Editar
-pip install -r requirements.txt
-Ejecuta la aplicación:
+    ```markdown
+    ¿Cómo gestionar permisos en Linux?
 
-bash
-Copiar
-Editar
-python app.py
-Comandos de Navegación
-Una vez que la aplicación esté en ejecución, puedes interactuar con las notas de la siguiente forma:
+    Gestión de Permisos
+    -------------------
+    Permisos en Linux:
+    -------------------
+    chmod: Cambia permisos de archivos y directorios.
+    - r: Lectura
+    - w: Escritura
+    - x: Ejecución
+    
+    Ejemplo básico:
+    ```bash
+    chmod u+rwx archivo
+    # Concede lectura, escritura y ejecución al propietario.
+    ```
 
-[1] Anterior: Para ver el bloque anterior de la nota.
-[2] Siguiente: Para ver el siguiente bloque de la nota.
-[3] Volver: Para regresar al menú principal y seleccionar otra nota.
-Contribución
-Si deseas contribuir al proyecto:
+## Funcionalidades
 
-Haz un fork del repositorio.
-Crea una nueva rama con tus cambios.
-Realiza un pull request con tus mejoras.
-Por favor, asegúrate de seguir el estilo de código del proyecto y agrega documentación cuando sea necesario.
+- **Navegación interactiva**: La aplicación permite navegar por los archivos y directorios de tus notas de manera sencilla y clara.
+- **Visualización**: Muestra las notas de forma estructurada, respetando las reglas de formato para facilitar la lectura en la terminal.
+- **Gestión de notas**: Permite agregar, eliminar y modificar notas desde la terminal.
 
-Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+## Instalación
+
+Para instalar y usar **Mis Notas** en tu sistema, sigue estos pasos:
+
+1. Clona este repositorio:
+
+    ```bash
+    git clone https://github.com/alo5s/Mis_notas.git
+    ```
+
+2. Navega a la carpeta del proyecto:
+
+    ```bash
+    cd Mis_notas
+    ```
+
+3. (Opcional) Si es necesario, instala las dependencias o realiza cualquier configuración adicional indicada en los archivos del proyecto.
+
+## Uso
+
+Una vez que el proyecto esté instalado, puedes iniciar la aplicación desde la terminal para comenzar a gestionar y explorar tus notas. El comando y la forma de interactuar con el programa dependerán de la implementación que hayas hecho, pero el flujo general será:
+
+```bash
+./mis_notas
 
 
+Este proyecto está bajo la licencia MIT.
