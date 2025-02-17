@@ -61,5 +61,17 @@ Una vez que el proyecto esté instalado, puedes iniciar la aplicación desde la 
 ```bash
 ./mis_notas
 
+```
 
+## Contribuciones
+Si deseas contribuir al desarrollo de Mis Notas, puedes hacerlo de la siguiente manera:
+
+Haz un fork de este repositorio.
+Realiza tus cambios o mejoras.
+Abre un pull request con una descripción clara de los cambios realizados.
+
+
+## Licencia
 Este proyecto está bajo la licencia MIT.
+
+
