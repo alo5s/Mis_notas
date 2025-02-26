@@ -13,12 +13,12 @@ El programa lee archivos `.md` y los estructura de una forma legible para leer e
     Un texto ejemplo
 
     ```markdown
-    ¿Cómo gestionar permisos en Linux?
+    ¿Cómo gestionar permisos en Linux?  ## Este es la discripcion
 
-    Gestión de Permisos
-    -------------------
+    Gestión de Permisos  ## Este es el titulo
+   
     Permisos en Linux:
-    -------------------
+    -------------------   ## Este divide el paginado
     chmod: Cambia permisos de archivos y directorios.
     - r: Lectura
     - w: Escritura

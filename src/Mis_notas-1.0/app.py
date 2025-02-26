@@ -2,7 +2,6 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 from rich.prompt import Prompt
-from rich.text import Text
 from rich import box
 import os
 import re
@@ -30,7 +29,6 @@ def obtener_descripcion(archivo):
     """ Extrae la primera línea de un archivo como descripción. """
     contenido = leer_archivo(f"{archivo}")
     return contenido[0].strip() if contenido else "Sin descripción"
-    #return contenido[0].strip() if contenido else " "
 
 def leer_nota_procesar(ruta):
     """ Extrae los títulos y secciones de una nota. """
@@ -66,44 +64,30 @@ def mostrar_menu(directorio):
         ruta = os.path.join(directorio, f)
 
         desc = obtener_descripcion(ruta) if ext == ".md" else "Carpeta"
-        if desc:
-            menu.add_row(i, f"{nombre_sin_ext}: {desc}")
-        else:
-             menu.add_row(i, f"{nombre_sin_ext}")
-
+        menu.add_row(i, f"{nombre_sin_ext}: {desc}")
+    
     console.print(Panel(menu, title="Mis Notas", title_align="left"))
     return opciones
 
 
 
 
-def resaltar_texto(contenido):
-    """Aplica colores a palabras clave en mayúsculas y subtítulos."""
-    contenido = re.sub(r'(\b[A-Z][A-Z]+\b)', r'[red]\1[/red]', contenido)  # Palabras en mayúsculas en rojo
-    contenido = re.sub(r'(^[^\n]+)\n-+', r'[blue]\1[/blue]\n----------', contenido)  # Subtítulos en azul
-    return contenido
+def mostrar_nota(ruta):
+    """ Muestra el contenido de una nota de forma paginada. """
+    titulo, bloques = leer_nota_procesar(ruta)
 
-def mostrar_pagina(titulo, contenido, indice, total):
-    """Muestra una página formateada con borde rojo y texto coloreado."""
-    contenido_resaltado = resaltar_texto(contenido)
-    
-    panel = Panel(
-        Text.from_markup(contenido_resaltado),
-        title=f"[yellow]{titulo}[/yellow] - {indice+1}/{total}",
-        border_style="bold green",  # Contorno rojo en negrita
-        style="white"  # Texto normal sin cambiar el fondo
-    )
-    
-    console.print(panel)
+    if not bloques:  # Si la nota está vacía o sin formato válido
+        console.print(Panel("[red]Nota vacía o sin formato válido[/]", title=titulo, style="bold red"))    
+        Prompt.ask("Presione Enter para volver")
+        console.clear()
+        return
 
-def navegar_notas(bloques, titulo):
-    """Navegación paginada entre secciones de una nota."""
     i = 0
     while True:
         console.clear()
-        mostrar_pagina(titulo, bloques[i], i, len(bloques))
-
+        console.print(Panel(bloques[i], title=f"{titulo} - {i+1}/{len(bloques)}", style="green"))
         accion = Prompt.ask("[1] Anterior [2] Siguiente [3] Volver", choices=["1", "2", "3"])
+        
         if accion == "1" and i > 0:
             i -= 1
         elif accion == "2" and i < len(bloques) - 1:
@@ -111,18 +95,6 @@ def navegar_notas(bloques, titulo):
         elif accion == "3":
             console.clear()
             break
-
-def mostrar_nota(ruta):
-    """Muestra el contenido de una nota con formato y navegación."""
-    titulo, bloques = leer_nota_procesar(ruta)
-    if not bloques:
-        console.print(Panel("[red]Nota vacía o sin formato válido[/]", title=titulo, border_style="bold red"))    
-        Prompt.ask("Presione Enter para volver")
-        console.clear()
-        return
-
-    navegar_notas(bloques, titulo)
-
 
 
 
